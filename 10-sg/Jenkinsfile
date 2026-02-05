@@ -22,17 +22,6 @@ pipeline {
 
 
     stages {
-        stage('Terraform Sanity Check') {
-            steps {
-                sh '''
-                whoami
-                echo $PATH
-                which terraform
-                terraform -version
-                '''
-            }
-        }
-
         stage('Init'){
             steps {
                 script {
