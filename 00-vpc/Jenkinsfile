@@ -77,7 +77,7 @@ pipeline {
         }
     }
     post {
-        alwsys{
+        always{
             echo "I always say hello"
             cleanWs()
         }
