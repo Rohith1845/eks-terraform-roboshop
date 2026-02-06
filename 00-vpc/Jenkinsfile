@@ -27,7 +27,7 @@ pipeline {
                 script {
                     withAWS(region:'us-east-1',credentials:'aws-creds'){
                         sh """
-                            terraform -version
+                            terraform version
                             cd 00-vpc
                             terraform init
                         """
