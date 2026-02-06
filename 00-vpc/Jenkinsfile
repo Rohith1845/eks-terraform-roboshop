@@ -26,12 +26,30 @@ pipeline {
             steps {
                 script {
                     withAWS(region:'us-east-1',credentials:'aws-creds'){
+                        // sh """
+                        //     cd 00-vpc
+                        //     terraform init
+                        // """
                         sh """
-                            echo "Current PATH: \$PATH"
-                            cd 00-vpc
-                            /usr/bin/terraform init
-                            // terraform init
-                        """
+                    # 1. Print current location so we know where we are
+                    echo "Full Path: \$(pwd)"
+                    
+                    # 2. List files to verify '00-vpc' actually exists here
+                    ls -F
+                    
+                    # 3. Try to enter the directory and run terraform
+                    if [ -d "00-vpc" ]; then
+                        cd 00-vpc
+                        echo "Entered 00-vpc. Contents:"
+                        ls -F
+                        
+                        # Use the absolute path but wrap it in a 'command' check
+                        /usr/bin/terraform init
+                    else
+                        echo "ERROR: Directory 00-vpc not found in \$(pwd)"
+                        exit 1
+                    fi
+                """
                     }
                 }
             }
