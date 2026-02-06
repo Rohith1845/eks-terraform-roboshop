@@ -27,6 +27,8 @@ pipeline {
                 script {
                     withAWS(region:'us-east-1',credentials:'aws-creds'){
                         sh '''
+                            export PATH=/usr/bin:/bin
+                            terraform version
                             cd 00-vpc
                             terraform init
                         '''
