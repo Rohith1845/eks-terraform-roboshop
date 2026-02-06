@@ -26,12 +26,11 @@ pipeline {
             steps {
                 script {
                     withAWS(region:'us-east-1',credentials:'aws-creds'){
-                        sh '''
-                            export PATH=/usr/bin:/bin
-                            terraform version
+                        sh """
+                            echo 'terraform -version'
                             cd 00-vpc
                             terraform init
-                        '''
+                        """
                     }
                 }
             }
