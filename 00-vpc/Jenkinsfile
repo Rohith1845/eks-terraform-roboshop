@@ -26,10 +26,10 @@ pipeline {
             steps {
                 script {
                     withAWS(region:'us-east-1',credentials:'aws-creds'){
-                        sh """
+                        sh '''
                             cd 00-vpc
                             terraform init
-                        """
+                        '''
                     }
                 }
             }
